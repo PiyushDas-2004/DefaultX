@@ -1,4 +1,4 @@
-// lib/app/modules/login/views/login_screen.dart
+import 'package:defaultx/app/core/widgets/kochikar_tech_text.dart';
 import 'package:defaultx/app/modules/login/views/widgets/animated_background.dart';
 import 'package:defaultx/app/modules/login/views/widgets/logo_section.dart';
 import 'package:defaultx/app/modules/login/views/widgets/login_form_section.dart';
@@ -16,7 +16,7 @@ class LoginScreen extends GetView<LoginController> {
         children: [
           // Animated background with blur effects
           const AnimatedBackground(),
-          
+
           // Main content layout
           SafeArea(
             child: Padding(
@@ -24,18 +24,15 @@ class LoginScreen extends GetView<LoginController> {
               child: Row(
                 children: [
                   // Left side - Logo section
-                  const Expanded(
-                    flex: 1,
-                    child: LogoSection(),
-                  ),
-                  
+                  const Expanded(flex: 1, child: LogoSection()),
+
                   // Middle divider
                   Container(
                     height: 700,
                     width: 1.5,
                     decoration: const BoxDecoration(color: Colors.black45),
                   ),
-                  
+
                   // Right side - Login form
                   Expanded(
                     flex: 1,
@@ -45,8 +42,19 @@ class LoginScreen extends GetView<LoginController> {
               ),
             ),
           ),
+
+          // Footer text at the bottom
+          Positioned(
+            bottom: 16, // distance from bottom
+            left: 0,
+            right: 0,
+            child: Center(
+              child: KochikarTech()
+            ),
+          ),
         ],
       ),
     );
   }
 }
+

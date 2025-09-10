@@ -12,21 +12,17 @@ class ApplicantManagementView extends GetView<ApplicantManagementController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBar(currentPage: 'Applications'),
-      // <-- MODIFIED: The entire body structure is updated.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // The filter bar is now the first widget in the body's Column.
             _buildFilterBar(),
             const SizedBox(height: 16.0),
-            // Expanded makes the table take up all remaining vertical space.
             Expanded(
               child: Obx(() {
                 if (controller.isLoading.value) {
                   return const Center(child: CircularProgressIndicator());
                 }
-                // The PaginatedDataTable will fill the space provided by Expanded.
                 return _buildPaginatedDataTable();
               }),
             ),
@@ -119,8 +115,6 @@ class ApplicantManagementView extends GetView<ApplicantManagementController> {
   }
 
   Widget _buildPaginatedDataTable() {
-    // This no longer needs a SingleChildScrollView because the PaginatedDataTable
-    // handles its own scrolling via pagination, and its height is constrained by Expanded.
     return SizedBox(
       width: double.infinity,
       child: PaginatedDataTable(
@@ -147,7 +141,6 @@ class ApplicantManagementView extends GetView<ApplicantManagementController> {
   }
 }
 
-/// The custom DataTableSource to feed data into the PaginatedDataTable.
 class ApplicantDataSource extends DataTableSource {
   final List<Applicant> _applicants;
   ApplicantDataSource(this._applicants);
